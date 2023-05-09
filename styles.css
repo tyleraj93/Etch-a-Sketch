@@ -2,17 +2,22 @@ body {
     height: 100vh;
     width: auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.container {
-    width: 820px;
-    height: 820px;
+.grid_container {
+    width: 720px;
+    height: 720px;
     border: 1px solid black;
     display: flex;
     flex-wrap: wrap;
 }
 
 .grid {
+}
+
+button {
+    margin: 20px;
 }
