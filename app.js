@@ -1,22 +1,28 @@
-// Buttons
-const grid_size = document.createElement("button");
-grid_size.textContent = "Change size";
-document.body.appendChild(grid_size);
-
-const change_to_black = document.createElement("button");
-change_to_black.textContent = "Set to B&W";
-document.body.appendChild(change_to_black);
-
-const change_to_color = document.createElement("button");
-change_to_color.textContent = "Set to RGB";
-document.body.appendChild(change_to_color);
-
+// H1 selector
+const header = document.querySelector("h1");
 
 // Grid container
 const grid_container = document.createElement("div");
 grid_container.classList.add("grid_container");
-document.body.appendChild(grid_container);
+header.appendChild(grid_container);
 
+// Button container
+const button_container = document.createElement("button");
+button_container.classList.add("button-container");
+document.body.appendChild(button_container);
+
+// Buttons
+const grid_size_button = document.createElement("button");
+grid_size_button.textContent = "Change size";
+button_container.appendChild(grid_size_button);
+
+const change_to_black = document.createElement("button");
+change_to_black.textContent = "Set to B&W";
+button_container.appendChild(change_to_black);
+
+const change_to_color = document.createElement("button");
+change_to_color.textContent = "Set to RGB";
+button_container.appendChild(change_to_color);
 
 // Functions
 const get_random_rgb = () => {
@@ -41,7 +47,7 @@ function get_grid_size() {
     return num;
 }
 
-function make_grid(grid_size = 16, color = get_shade_black) {
+function make_grid(grid_size, color) {
     const size = grid_container.clientHeight / grid_size;
     for (let i = 0; i < grid_size; i++) {
         for (let i = 0; i < grid_size; i++) {
@@ -57,14 +63,18 @@ function make_grid(grid_size = 16, color = get_shade_black) {
     }
 }
 
+// Variables
+let grid_size = 16;
+let color = get_shade_black;
 
 // Event listeners
-grid_size.addEventListener("click", () => {
+grid_size_button.addEventListener("click", () => {
     const grids_to_remove = document.querySelectorAll(".grid");
     grids_to_remove.forEach((grid) => {
         grid.remove();
     });
-    make_grid(get_grid_size(), get_shade_black);
+    grid_size = get_grid_size();
+    make_grid(grid_size, color);
 });
 
 change_to_black.addEventListener("click", () => {
@@ -72,7 +82,8 @@ change_to_black.addEventListener("click", () => {
     grids_to_remove.forEach((grid) => {
         grid.remove();
     });
-    make_grid(get_grid_size(), get_shade_black);
+    color = get_shade_black;
+    make_grid(grid_size, color);
 });
 
 change_to_color.addEventListener("click", () => {
@@ -80,8 +91,9 @@ change_to_color.addEventListener("click", () => {
     grids_to_remove.forEach((grid) => {
         grid.remove();
     });
-    make_grid(get_grid_size(), get_random_rgb);
+    color = get_random_rgb;
+    make_grid(grid_size, color);
 });
 
 //Inititializer
-make_grid();
+make_grid(grid_size, color);
