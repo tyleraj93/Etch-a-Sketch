@@ -7,15 +7,16 @@ body {
     align-items: center;
 }
 
+h1 {
+    text-align: center;
+}
+
 .grid_container {
-    width: 720px;
-    height: 720px;
+    width: 480px;
+    height: 480px;
     border: 1px solid black;
     display: flex;
     flex-wrap: wrap;
-}
-
-.grid {
 }
 
 button {
